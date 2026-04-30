@@ -39,3 +39,31 @@ function setButtonText(heart, button) {
     );
   }
 }
+
+const dialog = document.querySelector('.dialog');
+const openButton = document.querySelector('.footer__save-button');
+const closeButton = document.querySelector('.dialog__button');
+
+// открыть модалку
+openButton.addEventListener('click', () => {
+  dialog.showModal();
+});
+
+// закрыть по кнопке ОК
+closeButton.addEventListener('click', () => {
+  dialog.close();
+});
+
+dialog.addEventListener('click', (evt) => {
+  const rect = dialog.getBoundingClientRect();
+
+  const isClickOutside =
+    evt.clientX < rect.left ||
+    evt.clientX > rect.right ||
+    evt.clientY < rect.top ||
+    evt.clientY > rect.bottom;
+
+  if (isClickOutside) {
+    dialog.close();
+  }
+});
